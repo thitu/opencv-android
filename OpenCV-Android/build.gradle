@@ -1,8 +1,6 @@
-group = 'org.opencv'
-version = '3.2.0'
-
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'maven-publish'
 
 android {
     compileSdkVersion 25
@@ -11,7 +9,7 @@ android {
         minSdkVersion 10
         targetSdkVersion 25
         versionCode 1
-        versionName "1.0"
+        versionName "3.2.0"
     }
     lintOptions {
         abortOnError false
@@ -25,29 +23,19 @@ android {
     }
 }
 
-def siteUrl = 'https://github.com/steveliles/opencv-android'
-def gitUrl = 'https://github.com/steveliles/opencv-android.git'
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId 'com.github.eightcatd' //ライブラリ公開用のGroupドメイン
+            artifactId project.name //ライブラリ名
+            version android.defaultConfig.versionName //バージョン
+            artifact source: file("${project.buildDir}/outputs/aar/${project.name}-release.aar") //デプロイしたいアーカイブのパス
+        }
+    }
+    repositories {
+        maven {
+            url "file:${rootDir}/maven-repo" //Mavenリポジトリを作る場所の指定
 
-
-install {
-    repositories.mavenInstaller {
-        pom {
-            project {
-                packaging = 'aar'
-                name = 'OpenCV-Android'
-                url = siteUrl
-                licenses {
-                    license {
-                        name = 'BSD 3-Clause'
-                        url = 'https://opensource.org/licenses/BSD-3-Clause'
-                    }
-                }
-                scm {
-                    connection = gitUrl
-                    developerConnection = gitUrl
-                    url = siteUrl
-                }
-            }
         }
     }
 }
@@ -63,5 +51,4 @@ artifacts {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:25.1.0'
 }
