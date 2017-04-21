@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
-apply plugin: 'maven-publish'
+apply plugin: 'maven'
 
 android {
     compileSdkVersion 25
@@ -23,19 +23,14 @@ android {
     }
 }
 
-publishing {
-    publications {
-        maven(MavenPublication) {
-            groupId 'com.github.eightcatd' //ライブラリ公開用のGroupドメイン
-            artifactId project.name //ライブラリ名
-            version android.defaultConfig.versionName //バージョン
-            artifact source: file("${project.buildDir}/outputs/aar/${project.name}-release.aar") //デプロイしたいアーカイブのパス
-        }
-    }
+def repo = new File(rootDir, "maven-repo")
+uploadArchives {
     repositories {
-        maven {
-            url "file:${rootDir}/maven-repo" //Mavenリポジトリを作る場所の指定
-
+        mavenDeployer {
+            repository url: "file://${repo.absolutePath}"
+            pom.version = '3.2.0'
+            pom.groupId = 'com.github.eightcard'
+            pom.artifactId = 'OpenCV-Android'
         }
     }
 }
