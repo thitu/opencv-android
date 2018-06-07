@@ -83,7 +83,7 @@ bintray {
     publications = ["aar"]
 
     pkg {
-        repo = "releases"
+        repo = currentBranch.call().startsWith("release") ? "snapshots" : "releases"
         name = "opencv-android"
         licenses = ["MIT"]
         vcsUrl = "https://github.com/thitu/opencv-android.git"
