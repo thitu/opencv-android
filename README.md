@@ -20,13 +20,15 @@ Here's the steps I used to create my .aar:
 Reference the maven repository
 
     repositories {
-        maven { url 'https://github.com/eightcard/opencv-android/raw/master/maven-repo' }
+      maven {
+        url  "https://dl.bintray.com/thitu/releases"
+      }
     }
 
 Include the .aar in your build.gradle file:
 
     dependencies {
-        compile 'com.github.eightcard:OpenCV-Android:3.2.0'
+        compile 'com.github.thitu:OpenCV-Android:3.2.0'
     }
     
 Bootstrap OpenCV in your Java code:
@@ -51,10 +53,4 @@ Optional but recommended: to keep the downloaded APK size to a minimum, build se
     }
 
 Disclaimer: This project is simply my bundling of OpenCV as an Android Library. I am not otherwise involved in the OpenCV project, and all credit for the wonderful OpenCV library goes to the developers thereof.
-
-
-
-
-
-
 
