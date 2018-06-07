@@ -1,4 +1,4 @@
 #!/bin/bash
 
-./gradlew clean build publish bintrayUpload artifactoryPublish
+./gradlew clean build && ./gradlew publish bintrayUpload artifactoryPublish
 
