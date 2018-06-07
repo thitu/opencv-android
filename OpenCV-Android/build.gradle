@@ -1,13 +1,13 @@
-apply plugin: 'com.android.library'
-apply plugin: 'com.github.dcendents.android-maven'
-apply plugin: 'maven'
+apply plugin: "com.android.library"
+apply plugin: "maven-publish"
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    compileSdkVersion 28
+    buildToolsVersion "27.0.3"
+
     defaultConfig {
-        minSdkVersion 10
-        targetSdkVersion 25
+        minSdkVersion 21
+        targetSdkVersion 28
         versionCode 1
         versionName "3.2.0"
     }
@@ -19,31 +19,11 @@ android {
             minifyEnabled false
         }
     }
-    productFlavors {
-    }
-}
-
-def repo = new File(rootDir, "maven-repo")
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            repository url: "file://${repo.absolutePath}"
-            pom.version = '3.2.0'
-            pom.groupId = 'com.github.eightcard'
-            pom.artifactId = 'OpenCV-Android'
-        }
-    }
-}
-
-task sourcesJar(type: Jar) {
-    from android.sourceSets.main.java.srcDirs
-    classifier = 'sources'
-}
-artifacts {
-    archives sourcesJar
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile 'junit:junit:4.12'
+    testImplementation "junit:junit:4.12"
 }
+
+apply from: "build-extras.gradle"
+apply from: "publishing.gradle"

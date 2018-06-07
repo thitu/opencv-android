@@ -1,0 +1,32 @@
+
+ext {
+    releaseArtifact = "${buildDir}/outputs/aar/OpenCV-Android-release.aar"
+    debugArtifact = "${buildDir}/outputs/aar/OpenCV-Android-debug.aar"
+
+    groupId = "com.github.thitu"
+    artifactId = "opencv-android"
+    version = "3.2.0"
+}
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = "sources"
+}
+
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = "javadoc"
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+version ext.version
+group ext.groupId

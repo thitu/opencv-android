@@ -1,0 +1,99 @@
+apply plugin: "com.jfrog.artifactory"
+apply plugin: "com.jfrog.bintray"
+
+publishing {
+    publications {
+        aar(MavenPublication) {
+            groupId "${groupId}"
+            artifactId "${artifactId}"
+            version "${version}"
+
+            artifact source: file("${releaseArtifact}")
+            artifact source: file("${debugArtifact}"), classifier: "debug"
+
+            pom.withXml {
+                def dependenciesNode = asNode().appendNode("dependencies")
+
+                configurations.implementation.allDependencies.each {
+                    def dependencyNode = dependenciesNode.appendNode("dependency")
+                    dependencyNode.appendNode("groupId", it.group)
+                    dependencyNode.appendNode("artifactId", it.name)
+                    dependencyNode.appendNode("version", it.version)
+                }
+            }
+        }
+        local(MavenPublication) {
+            groupId "${groupId}"
+            artifactId "${artifactId}"
+            version "${version}"
+
+            artifact source: file("${releaseArtifact}")
+            artifact source: file("${debugArtifact}"), classifier: "debug"
+            artifact(sourcesJar)
+
+            pom.withXml {
+                def dependenciesNode = asNode().appendNode("dependencies")
+
+                configurations.implementation.allDependencies.each {
+                    def dependencyNode = dependenciesNode.appendNode("dependency")
+                    dependencyNode.appendNode("groupId", it.group)
+                    dependencyNode.appendNode("artifactId", it.name)
+                    dependencyNode.appendNode("version", it.version)
+                }
+            }
+        }
+    }
+    repositories {
+        mavenLocal()
+    }
+}
+
+artifactory {
+    contextUrl = CONTEXT_REPO_ROOT ?: environmentValue("CONTEXT_REPO_ROOT")
+
+    publish {
+        repository {
+            repoKey = currentBranch.call().startsWith("release") ? DEFAULT_RELEASES_REPO : DEFAULT_SNAPSHOTS_REPO
+
+            username = ARTIFACTORY_USERNAME ?: environmentValue("ARTIFACTORY_USERNAME")
+            password = ARTIFACTORY_PASSWORD ?: environmentValue("ARTIFACTORY_PASSWORD")
+            maven = true
+        }
+        defaults {
+            publications("aar")
+            publishArtifacts = true
+            publishPom = true
+            publishIvy = false
+        }
+    }
+    resolve {
+        repository {
+            repoKey = currentBranch.call().startsWith("release") ? DEFAULT_RELEASES_REPO : DEFAULT_SNAPSHOTS_REPO
+
+            username = ARTIFACTORY_USERNAME ?: environmentValue("ARTIFACTORY_USERNAME")
+            password = ARTIFACTORY_PASSWORD ?: environmentValue("ARTIFACTORY_PASSWORD")
+            maven = true
+        }
+    }
+}
+
+bintray {
+    user = BINTRAY_USERNAME ?: environmentValue("BINTRAY_USERNAME")
+    key = BINTRAY_API_KEY ?: environmentValue("BINTRAY_API_KEY")
+    publications = ["aar"]
+
+    pkg {
+        repo = "releases"
+        name = "opencv-android"
+        licenses = ["MIT"]
+        vcsUrl = "https://github.com/thitu/opencv-android.git"
+        publicDownloadNumbers = true
+        version {
+            name = "3.2.0"
+            desc = "Repackaged OpenCV for Android"
+            released = new Date()
+            vcsTag = "3.2.0"
+            attributes = [:]
+        }
+    }
+}
