@@ -28,7 +28,7 @@ Reference the maven repository
 Include the .aar in your build.gradle file:
 
     dependencies {
-        compile 'com.github.thitu:OpenCV-Android:3.2.0'
+        compile "com.github.thitu:OpenCV-Android:3.2.0"
     }
     
 Bootstrap OpenCV in your Java code:
