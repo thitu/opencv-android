@@ -1,4 +1,3 @@
-
 //
 // This file is auto-generated. Please don't modify it!
 //
@@ -9,15 +8,21 @@ import java.util.ArrayList;
 import java.util.List;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfKeyPoint;
+import org.opencv.features2d.FeatureDetector;
 import org.opencv.utils.Converters;
 
 // C++: class javaFeatureDetector
 //javadoc: javaFeatureDetector
+@Deprecated
 public class FeatureDetector {
 
     protected final long nativeObj;
     protected FeatureDetector(long addr) { nativeObj = addr; }
 
+    public long getNativeObjAddr() { return nativeObj; }
+
+    // internal usage only
+    public static FeatureDetector __fromPtr__(long addr) { return new FeatureDetector(addr); }
 
     private static final int
             GRIDDETECTOR = 1000,
@@ -81,10 +86,11 @@ public class FeatureDetector {
     //
 
     //javadoc: javaFeatureDetector::create(detectorType)
+    @Deprecated
     public static FeatureDetector create(int detectorType)
     {
         
-        FeatureDetector retVal = new FeatureDetector(create_0(detectorType));
+        FeatureDetector retVal = FeatureDetector.__fromPtr__(create_0(detectorType));
         
         return retVal;
     }

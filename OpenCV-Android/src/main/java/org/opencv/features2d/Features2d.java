@@ -1,4 +1,3 @@
-
 //
 // This file is auto-generated. Please don't modify it!
 //
@@ -12,6 +11,9 @@ import org.opencv.core.MatOfDMatch;
 import org.opencv.core.MatOfKeyPoint;
 import org.opencv.core.Scalar;
 import org.opencv.utils.Converters;
+
+// C++: class Features2d
+//javadoc: Features2d
 
 public class Features2d {
 

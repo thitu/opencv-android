@@ -1,4 +1,3 @@
-
 //
 // This file is auto-generated. Please don't modify it!
 //
@@ -11,11 +10,16 @@ import org.opencv.utils.Converters;
 
 // C++: class BOWTrainer
 //javadoc: BOWTrainer
+
 public class BOWTrainer {
 
     protected final long nativeObj;
     protected BOWTrainer(long addr) { nativeObj = addr; }
 
+    public long getNativeObjAddr() { return nativeObj; }
+
+    // internal usage only
+    public static BOWTrainer __fromPtr__(long addr) { return new BOWTrainer(addr); }
 
     //
     // C++:  Mat cluster(Mat descriptors)

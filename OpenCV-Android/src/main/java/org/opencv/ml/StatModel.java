@@ -1,4 +1,3 @@
-
 //
 // This file is auto-generated. Please don't modify it!
 //
@@ -6,13 +5,17 @@ package org.opencv.ml;
 
 import org.opencv.core.Algorithm;
 import org.opencv.core.Mat;
+import org.opencv.ml.TrainData;
 
 // C++: class StatModel
 //javadoc: StatModel
+
 public class StatModel extends Algorithm {
 
     protected StatModel(long addr) { super(addr); }
 
+    // internal usage only
+    public static StatModel __fromPtr__(long addr) { return new StatModel(addr); }
 
     public static final int
             UPDATE_MODEL = 1,
@@ -85,7 +88,7 @@ public class StatModel extends Algorithm {
     public  boolean train(TrainData trainData, int flags)
     {
         
-        boolean retVal = train_1(nativeObj, trainData.nativeObj, flags);
+        boolean retVal = train_1(nativeObj, trainData.getNativeObjAddr(), flags);
         
         return retVal;
     }
@@ -94,7 +97,7 @@ public class StatModel extends Algorithm {
     public  boolean train(TrainData trainData)
     {
         
-        boolean retVal = train_2(nativeObj, trainData.nativeObj);
+        boolean retVal = train_2(nativeObj, trainData.getNativeObjAddr());
         
         return retVal;
     }
@@ -108,7 +111,7 @@ public class StatModel extends Algorithm {
     public  float calcError(TrainData data, boolean test, Mat resp)
     {
         
-        float retVal = calcError_0(nativeObj, data.nativeObj, test, resp.nativeObj);
+        float retVal = calcError_0(nativeObj, data.getNativeObjAddr(), test, resp.nativeObj);
         
         return retVal;
     }

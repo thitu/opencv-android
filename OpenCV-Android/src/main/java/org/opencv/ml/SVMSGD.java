@@ -1,18 +1,23 @@
-
 //
 // This file is auto-generated. Please don't modify it!
 //
 package org.opencv.ml;
 
+import java.lang.String;
 import org.opencv.core.Mat;
 import org.opencv.core.TermCriteria;
+import org.opencv.ml.SVMSGD;
+import org.opencv.ml.StatModel;
 
 // C++: class SVMSGD
 //javadoc: SVMSGD
+
 public class SVMSGD extends StatModel {
 
     protected SVMSGD(long addr) { super(addr); }
 
+    // internal usage only
+    public static SVMSGD __fromPtr__(long addr) { return new SVMSGD(addr); }
 
     public static final int
             SGD = 0,
@@ -43,7 +48,30 @@ public class SVMSGD extends StatModel {
     public static SVMSGD create()
     {
         
-        SVMSGD retVal = new SVMSGD(create_0());
+        SVMSGD retVal = SVMSGD.__fromPtr__(create_0());
+        
+        return retVal;
+    }
+
+
+    //
+    // C++: static Ptr_SVMSGD load(String filepath, String nodeName = String())
+    //
+
+    //javadoc: SVMSGD::load(filepath, nodeName)
+    public static SVMSGD load(String filepath, String nodeName)
+    {
+        
+        SVMSGD retVal = SVMSGD.__fromPtr__(load_0(filepath, nodeName));
+        
+        return retVal;
+    }
+
+    //javadoc: SVMSGD::load(filepath)
+    public static SVMSGD load(String filepath)
+    {
+        
+        SVMSGD retVal = SVMSGD.__fromPtr__(load_1(filepath));
         
         return retVal;
     }
@@ -266,6 +294,10 @@ public class SVMSGD extends StatModel {
 
     // C++: static Ptr_SVMSGD create()
     private static native long create_0();
+
+    // C++: static Ptr_SVMSGD load(String filepath, String nodeName = String())
+    private static native long load_0(String filepath, String nodeName);
+    private static native long load_1(String filepath);
 
     // C++:  TermCriteria getTermCriteria()
     private static native double[] getTermCriteria_0(long nativeObj);

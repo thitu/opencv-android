@@ -1,17 +1,21 @@
-
 //
 // This file is auto-generated. Please don't modify it!
 //
 package org.opencv.features2d;
 
+import java.lang.String;
+import org.opencv.features2d.AgastFeatureDetector;
 import org.opencv.features2d.Feature2D;
 
 // C++: class AgastFeatureDetector
 //javadoc: AgastFeatureDetector
+
 public class AgastFeatureDetector extends Feature2D {
 
     protected AgastFeatureDetector(long addr) { super(addr); }
 
+    // internal usage only
+    public static AgastFeatureDetector __fromPtr__(long addr) { return new AgastFeatureDetector(addr); }
 
     public static final int
             AGAST_5_8 = 0,
@@ -30,7 +34,7 @@ public class AgastFeatureDetector extends Feature2D {
     public static AgastFeatureDetector create(int threshold, boolean nonmaxSuppression, int type)
     {
         
-        AgastFeatureDetector retVal = new AgastFeatureDetector(create_0(threshold, nonmaxSuppression, type));
+        AgastFeatureDetector retVal = AgastFeatureDetector.__fromPtr__(create_0(threshold, nonmaxSuppression, type));
         
         return retVal;
     }
@@ -39,7 +43,21 @@ public class AgastFeatureDetector extends Feature2D {
     public static AgastFeatureDetector create()
     {
         
-        AgastFeatureDetector retVal = new AgastFeatureDetector(create_1());
+        AgastFeatureDetector retVal = AgastFeatureDetector.__fromPtr__(create_1());
+        
+        return retVal;
+    }
+
+
+    //
+    // C++:  String getDefaultName()
+    //
+
+    //javadoc: AgastFeatureDetector::getDefaultName()
+    public  String getDefaultName()
+    {
+        
+        String retVal = getDefaultName_0(nativeObj);
         
         return retVal;
     }
@@ -139,6 +157,9 @@ public class AgastFeatureDetector extends Feature2D {
     // C++: static Ptr_AgastFeatureDetector create(int threshold = 10, bool nonmaxSuppression = true, int type = AgastFeatureDetector::OAST_9_16)
     private static native long create_0(int threshold, boolean nonmaxSuppression, int type);
     private static native long create_1();
+
+    // C++:  String getDefaultName()
+    private static native String getDefaultName_0(long nativeObj);
 
     // C++:  bool getNonmaxSuppression()
     private static native boolean getNonmaxSuppression_0(long nativeObj);

@@ -1,18 +1,27 @@
-
 //
 // This file is auto-generated. Please don't modify it!
 //
 package org.opencv.ml;
 
+import java.lang.String;
+import java.util.ArrayList;
+import java.util.List;
 import org.opencv.core.Mat;
+import org.opencv.ml.TrainData;
+import org.opencv.utils.Converters;
 
 // C++: class TrainData
 //javadoc: TrainData
+
 public class TrainData {
 
     protected final long nativeObj;
     protected TrainData(long addr) { nativeObj = addr; }
 
+    public long getNativeObjAddr() { return nativeObj; }
+
+    // internal usage only
+    public static TrainData __fromPtr__(long addr) { return new TrainData(addr); }
 
     //
     // C++:  Mat getCatMap()
@@ -353,7 +362,7 @@ public class TrainData {
     public static TrainData create(Mat samples, int layout, Mat responses, Mat varIdx, Mat sampleIdx, Mat sampleWeights, Mat varType)
     {
         
-        TrainData retVal = new TrainData(create_0(samples.nativeObj, layout, responses.nativeObj, varIdx.nativeObj, sampleIdx.nativeObj, sampleWeights.nativeObj, varType.nativeObj));
+        TrainData retVal = TrainData.__fromPtr__(create_0(samples.nativeObj, layout, responses.nativeObj, varIdx.nativeObj, sampleIdx.nativeObj, sampleWeights.nativeObj, varType.nativeObj));
         
         return retVal;
     }
@@ -362,7 +371,7 @@ public class TrainData {
     public static TrainData create(Mat samples, int layout, Mat responses)
     {
         
-        TrainData retVal = new TrainData(create_1(samples.nativeObj, layout, responses.nativeObj));
+        TrainData retVal = TrainData.__fromPtr__(create_1(samples.nativeObj, layout, responses.nativeObj));
         
         return retVal;
     }
@@ -484,7 +493,14 @@ public class TrainData {
     // C++:  void getNames(vector_String names)
     //
 
-    // Unknown type 'vector_String' (I), skipping the function
+    //javadoc: TrainData::getNames(names)
+    public  void getNames(List<String> names)
+    {
+        
+        getNames_0(nativeObj, names);
+        
+        return;
+    }
 
 
     //
@@ -679,6 +695,9 @@ public class TrainData {
 
     // C++:  int getResponseType()
     private static native int getResponseType_0(long nativeObj);
+
+    // C++:  void getNames(vector_String names)
+    private static native void getNames_0(long nativeObj, List<String> names);
 
     // C++:  void getSample(Mat varIdx, int sidx, float* buf)
     private static native void getSample_0(long nativeObj, long varIdx_nativeObj, int sidx, float buf);
