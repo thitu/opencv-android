@@ -89,10 +89,10 @@ bintray {
         vcsUrl = "https://github.com/thitu/opencv-android.git"
         publicDownloadNumbers = true
         version {
-            name = "3.2.0"
+            name = "${version}"
             desc = "Repackaged OpenCV for Android"
             released = new Date()
-            vcsTag = "3.2.0"
+            vcsTag = "${version}"
             attributes = [:]
         }
     }
