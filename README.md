@@ -2,9 +2,9 @@
 
 OpenCV4Android, packaged as a .aar for direct use without depending on the stupid OpenCV Manager app.
 
-### Building an .aar of OpenCV-3.x.y
+### Building an .aar of OpenCV-3.4.1
 
-Building OpenCV-3.x.y for Android is actually quite simple, its just not obvious where to get the pieces and the OpenCV docs hard-sell the "OpenCV Manager" in favour of the better and easier direct integration approach.
+Building OpenCV-3.4.1 for Android is actually quite simple, its just not obvious where to get the pieces and the OpenCV docs hard-sell the "OpenCV Manager" in favour of the better and easier direct integration approach.
 
 Here's the steps I used to create my .aar:
 
@@ -28,7 +28,7 @@ Reference the maven repository
 Include the .aar in your build.gradle file:
 
     dependencies {
-        compile "com.github.thitu:OpenCV-Android:3.2.0"
+        compile "com.github.thitu:OpenCV-Android:3.4.1"
     }
     
 Bootstrap OpenCV in your Java code:
